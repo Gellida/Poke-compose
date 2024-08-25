@@ -1,9 +1,12 @@
 package com.jmgc.prueba.di
 
-import com.jmgc.prueba.domain.use_case.GetPokemonsUseCase
-import com.jmgc.prueba.data.remote.PokeApiService
+
+import com.jmgc.prueba.data.local.PokemonDao
+import com.jmgc.prueba.data.remote.api.PokeApiService
 import com.jmgc.prueba.data.repository.PokemonRepositoryImpl
 import com.jmgc.prueba.domain.repository.PokemonRepository
+import com.jmgc.prueba.domain.use_case.FetchPokemonsUseCase
+import com.jmgc.prueba.domain.use_case.SavePokemonsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,10 +43,21 @@ object AppModule {
     @Provides
     @Singleton
     fun provideGetPokemonsUseCase(
-        pokemonRepository: PokemonRepository
-    ): GetPokemonsUseCase {
-        return GetPokemonsUseCase(pokemonRepository)
+        pokemonRepository: PokemonRepository,
+        pokemonDao: PokemonDao
+    ): FetchPokemonsUseCase {
+        return FetchPokemonsUseCase(pokemonRepository,pokemonDao)
     }
+
+    @Provides
+    @Singleton
+    fun provideSavePokemonsUseCase(
+        pokemonRepository: PokemonRepository,
+        pokemonDao: PokemonDao
+    ): SavePokemonsUseCase {
+        return SavePokemonsUseCase(pokemonRepository,pokemonDao)
+    }
+
 
 
 }
