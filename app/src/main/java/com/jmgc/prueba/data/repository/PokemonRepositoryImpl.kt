@@ -22,9 +22,9 @@ class PokemonRepositoryImpl @Inject constructor(
         return response.results.map { it.toDomainModel() }
     }
 
-    override suspend fun getPokemonDetails(pokemonName: String): Pokemon {
+    override suspend fun getPokemonDetails(pokemonName: String): PokemonDto {
         val response = pokeApiService.getPokemon(pokemonName)
-        return response.toDomainModel()
+        return response
     }
 
     override suspend fun fetchAndSavePokemons(pokemon: Pokemon): Pokemon {

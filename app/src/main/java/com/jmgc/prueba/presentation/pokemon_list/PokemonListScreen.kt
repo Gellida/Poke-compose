@@ -42,6 +42,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -178,7 +179,7 @@ fun PokemonList(
         }
 
         items(itemCount) { index ->
-            if (index >= itemCount - 1 && !endReached) {
+            if (index >= itemCount - 1 && !endReached && !isLoading) {
                 viewModel.loadPokemonPaginated()
             }
             PokedexRow(rowIndex = index, entries = pokemonList, navController = navController)
@@ -222,10 +223,8 @@ fun PokedexEntry(
 
             .clickable {
                 navController.navigate(
-                    "pokemon_detail_screen/${dominantColor.value}/${entry.pokemonName}"
+                    "pokemon_detail_screen/${dominantColor.value.toArgb()}/${entry.pokemonName}"
                 )
-
-
             }
     ) {
         AsyncImage(

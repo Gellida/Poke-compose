@@ -26,7 +26,7 @@ interface PokeApiService {
     @GET("pokemon/{name}")
     suspend fun getPokemon(
         @Path("name") name : String
-    ): Pokemon
+    ): PokemonDto
 }
 
 

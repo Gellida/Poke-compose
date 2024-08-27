@@ -16,10 +16,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.jmgc.prueba.presentation.pokemon_details.PokemonDetailScreen
+import com.jmgc.prueba.presentation.pokemon_details.PokemonDetailViewModel
 import com.jmgc.prueba.presentation.pokemon_list.PokemonListScreen
 import com.jmgc.prueba.presentation.pokemon_list.PokemonViewModel
 import com.jmgc.prueba.ui.theme.PruebaTheme
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -52,6 +55,13 @@ class MainActivity : ComponentActivity() {
                         val pokemonName = remember {
                             it.arguments?.getString("pokemonName")
                         }
+                        val pokemonDetailViewModel: PokemonDetailViewModel by viewModels()
+                        PokemonDetailScreen(
+                            dominantColor = dominantColor,
+                            pokemonName = pokemonName?.lowercase(Locale.ROOT) ?: "",
+                            navController = navController,
+                            viewModel = pokemonDetailViewModel
+                        )
                     }
                 }
 

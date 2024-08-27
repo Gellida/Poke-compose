@@ -21,9 +21,12 @@ class FetchPokemonsUseCase @Inject constructor(
 
             val pokemonEntities = pokemons.map { pokemon ->
                 val details = pokemonRepository.getPokemonDetails(pokemon.name)
-                details.toEntity()
+                details
             }
             Log.d("SavePokemonsUseCase", "Pokemon entities: $pokemonEntities")
+
+            /*
+
 
             pokemonDao.insertAll(pokemonEntities)
 
@@ -33,8 +36,8 @@ class FetchPokemonsUseCase @Inject constructor(
                 details.toDomainModel()
                 
             }
-
-            Resource.Success(pokemonDomain) // Devuelve la lista de Pokémon
+ */
+            Resource.Success(pokemons) // Devuelve la lista de Pokémon
         } catch (e: Exception) {
             Resource.Error("Un error en el caso de uso: ${e.message}")
         }
