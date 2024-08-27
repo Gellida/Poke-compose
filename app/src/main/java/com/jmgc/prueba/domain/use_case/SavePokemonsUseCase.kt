@@ -3,7 +3,6 @@ package com.jmgc.prueba.domain.use_case
 import android.util.Log
 import com.jmgc.prueba.data.local.PokemonDao
 import com.jmgc.prueba.data.mappers.toEntity
-import com.jmgc.prueba.domain.model.Pokemon
 import com.jmgc.prueba.domain.repository.PokemonRepository
 import com.jmgc.prueba.util.Resource
 import javax.inject.Inject

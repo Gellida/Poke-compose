@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.androidx.material3)
 
     implementation(libs.androidx.databinding.adapters)
+    implementation(libs.androidx.palette.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -101,7 +102,7 @@ dependencies {
 
 
     implementation ("io.coil-kt:coil-compose:2.4.0")
-    //implementation "androidx.palette:palette-ktx:1.0.0"
+    implementation ("androidx.palette:palette-ktx:1.0.0")
 
     // coroutines
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")

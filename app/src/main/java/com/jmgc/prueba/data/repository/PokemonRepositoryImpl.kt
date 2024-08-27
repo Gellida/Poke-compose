@@ -11,11 +11,11 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
+
 @Singleton
 class PokemonRepositoryImpl @Inject constructor(
     private val pokeApiService: PokeApiService
 ) : PokemonRepository {
-
 
     override suspend fun getPokemons(offset: Int, limit: Int): List<Pokemon> {
         val response = pokeApiService.getPokemons(offset, limit)

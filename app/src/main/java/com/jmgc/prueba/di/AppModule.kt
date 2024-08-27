@@ -3,6 +3,7 @@ package com.jmgc.prueba.di
 
 import com.jmgc.prueba.data.local.PokemonDao
 import com.jmgc.prueba.data.remote.api.PokeApiService
+import com.jmgc.prueba.data.repository.PokemonRepository1
 import com.jmgc.prueba.data.repository.PokemonRepositoryImpl
 import com.jmgc.prueba.domain.repository.PokemonRepository
 import com.jmgc.prueba.domain.use_case.FetchPokemonsUseCase
@@ -19,8 +20,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-
-
     @Provides
     @Singleton
     fun providePokeApiService(): PokeApiService {
@@ -34,11 +33,20 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun providePokemonRepository1(
+        api: PokeApiService
+    ) = PokemonRepository1(api)
+
+
+    @Provides
+    @Singleton
     fun providePokemonRepository(
         pokeApiService: PokeApiService
     ): PokemonRepository {
         return PokemonRepositoryImpl(pokeApiService)
     }
+
+
 
     @Provides
     @Singleton
@@ -57,7 +65,6 @@ object AppModule {
     ): SavePokemonsUseCase {
         return SavePokemonsUseCase(pokemonRepository,pokemonDao)
     }
-
 
 
 }
